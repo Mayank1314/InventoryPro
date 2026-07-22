@@ -100,7 +100,6 @@ if(!isset($_SESSION['username']))
 <!-- ALERTS -->
 
 
-<?php if(isset($_GET['success'])){ ?>
 
 <div class="alert alert-success alert-dismissible fade show">
 
@@ -112,7 +111,6 @@ Product Added Successfully
 
 </div>
 
-<?php } ?>
 
 
 
@@ -338,30 +336,24 @@ while($row=mysqli_fetch_assoc($result)){
 
 <td>
 
+    <a href="edit_product.php?id=<?php echo $row['id']; ?>"
+       class="btn btn-success btn-sm"
+       title="Edit Product">
 
-<a href="edit_product.php?id=<?php echo $row['id']; ?>"
-class="btn btn-success btn-sm">
+        <i class="bi bi-pencil"></i>
 
-<i class="bi bi-pencil"></i>
+    </a>
 
-</a>
+    <a href="delete_product.php?id=<?php echo $row['id']; ?>"
+       class="btn btn-danger btn-sm"
+       title="Delete Product"
+       onclick="return confirm('Are you sure you want to delete this product?');">
 
+        <i class="bi bi-trash"></i>
 
-
-
-<a href="delete_product.php?id=<?php echo $row['id']; ?>"
-class="btn btn-danger btn-sm"
-onclick="return confirm('Delete this product?');">
-
-
-<i class="bi bi-trash"></i>
-
-
-</a>
-
+    </a>
 
 </td>
-
 
 
 </tr>

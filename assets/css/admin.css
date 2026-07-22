@@ -267,3 +267,138 @@ table{
     }
 
 }
+
+/* ===========================
+   DASHBOARD CARDS
+===========================*/
+
+.card-counter{
+
+    background:#1e293b;
+    color:#fff;
+    border-radius:16px;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.card-counter:hover{
+
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+}
+
+.card-counter h6{
+
+    color:#94a3b8;
+    font-size:15px;
+    margin-bottom:10px;
+
+}
+
+.card-counter h3{
+
+    font-size:30px;
+    font-weight:700;
+
+}
+
+.card-counter i{
+
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    opacity:.15;
+    font-size:60px;
+
+}
+
+
+/* Low Stock */
+
+.low-stock-alert-card{
+
+    background:#dc2626;
+    color:white;
+    border-radius:16px;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+
+}
+
+.low-stock-alert-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.low-stock-pulse{
+
+    animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+box-shadow:0 0 0 0 rgba(220,38,38,.6);
+
+}
+
+70%{
+
+box-shadow:0 0 0 20px rgba(220,38,38,0);
+
+}
+
+100%{
+
+box-shadow:0 0 0 0 rgba(220,38,38,0);
+
+}
+
+}
+
+
+/* Cards */
+
+.card{
+
+    background:#1e293b;
+    color:white;
+    border-radius:16px;
+    border:none;
+
+}
+
+.card-header{
+
+    background:#1e293b !important;
+    color:white;
+    border-bottom:1px solid #334155;
+
+}
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table td,
+.table th{
+
+    vertical-align:middle;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#273449;
+
+}

@@ -209,6 +209,20 @@ Reports & Analytics
 
 </div>
 
+<?php if(isset($_GET['reset'])){ ?>
+
+<div class="alert alert-success alert-dismissible fade show">
+
+<i class="bi bi-check-circle-fill"></i>
+
+Password Changed Successfully.
+
+<button class="btn-close" data-bs-dismiss="alert"></button>
+
+</div>
+
+<?php } ?>
+
 <?php } ?>
 <?php
 
@@ -437,7 +451,7 @@ Remember Me
 
 
 
-<a href="#">
+<a href="forgot_password.php">
 
 Forgot Password?
 

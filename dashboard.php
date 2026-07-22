@@ -15,7 +15,7 @@ if(!isset($_SESSION['role']))
 
 if($_SESSION['role'] != "Admin")
 {
-    header("Location: products.php");
+    header("Location: user_dashboard.php");
     exit();
 }
 ?>
