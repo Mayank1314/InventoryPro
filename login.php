@@ -197,7 +197,65 @@ Reports & Analytics
 
 
 <div class="login-card">
+<?php if(isset($_GET['logout'])){ ?>
 
+<div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+
+    <i class="bi bi-check-circle-fill me-2"></i>
+
+    You have been logged out successfully.
+
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+</div>
+
+<?php } ?>
+<?php
+
+if(isset($_GET['registered']))
+{
+
+?>
+
+<div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+
+    <i class="bi bi-check-circle-fill me-2"></i>
+
+    Account created successfully! Please login.
+
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+</div>
+
+<?php
+
+}
+
+?>
+
+
+<?php
+
+if(isset($_GET['error']))
+{
+
+?>
+
+<div class="alert alert-danger alert-dismissible fade show">
+
+<i class="bi bi-exclamation-triangle-fill"></i>
+
+Something went wrong. Please try again.
+
+<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+</div>
+
+<?php
+
+}
+
+?>
 
 
 
@@ -222,7 +280,7 @@ Login to continue
 
 
 
-<form action="dashboard.php" method="POST">
+<form action="login_process.php" method="POST">
 
 
 
@@ -417,15 +475,40 @@ Login
 
 
 
+
+
 <div class="bottom-links">
 
 
-<a href="#">
+<div class="text-center mb-3">
+
+<span class="text-muted">
+
+New to InventoryPro?
+
+</span>
+
+
+<a href="register.php" class="fw-semibold">
+
+Create an Account
+
+</a>
+
+
+</div>
+
+
+
+
+<div class="d-flex justify-content-between">
+
+
+<a href="forgot_username.php">
 
 Forgot Username?
 
 </a>
-
 
 
 
@@ -436,9 +519,10 @@ Forgot Username?
 </a>
 
 
-
 </div>
 
+
+</div>
 
 
 

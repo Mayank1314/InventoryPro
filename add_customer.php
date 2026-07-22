@@ -1,8 +1,6 @@
-<?php
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,104 +8,242 @@
 
 <title>Add Customer</title>
 
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
 
-<style>
 
-:root{
---dark:#0A2540;
---light:#f4f7fb;
-}
+<!-- COMMON ADMIN CSS -->
+<link rel="stylesheet" href="assets/css/admin.css">
 
-body{
-background:var(--light);
-font-family:'Segoe UI',sans-serif;
-}
-
-#sidebar{
-width:260px;
-height:100vh;
-background:#0A2540;
-position:fixed;
-left:0;
-top:0;
-padding:20px;
-}
-
-#main{
-margin-left:260px;
-padding:30px;
-}
-
-.card{
-border:none;
-border-radius:15px;
-}
-
-</style>
 
 </head>
 
+
 <body>
 
-<div id="sidebar">
 
-<!-- Paste your sidebar here -->
+<?php include("includes/sidebar.php"); ?>
+
+
+
+<div id="main-content">
+
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+
+<h2 class="fw-bold text-blue-dark">
+
+<i class="bi bi-people-fill"></i>
+
+Add Customer
+
+</h2>
+
+
+
+<a href="customers.php" class="btn btn-secondary">
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+</a>
+
+
 
 </div>
 
-<div id="main">
 
-<div class="card shadow">
+
+
+
+<div class="card shadow border-0">
+
 
 <div class="card-header bg-primary text-white">
 
-<h4><i class="bi bi-people-fill"></i> Add Customer</h4>
+
+<h5 class="mb-0">
+
+<i class="bi bi-person-plus"></i>
+
+Customer Details
+
+</h5>
+
 
 </div>
+
+
+
+
 
 <div class="card-body">
 
+
+
 <form action="customer_process.php" method="POST">
 
-<div class="mb-3">
-<label class="form-label">Customer Name</label>
-<input type="text" name="customer_name" class="form-control" required>
-</div>
+
 
 <div class="mb-3">
-<label class="form-label">Phone Number</label>
-<input type="text" name="phone" class="form-control">
+
+<label class="form-label fw-semibold">
+
+Customer Name
+
+</label>
+
+
+<input
+
+type="text"
+
+name="customer_name"
+
+class="form-control"
+
+placeholder="Enter Customer Name"
+
+required>
+
+
 </div>
 
-<div class="mb-3">
-<label class="form-label">Email Address</label>
-<input type="email" name="email" class="form-control">
-</div>
+
+
+
 
 <div class="mb-3">
-<label class="form-label">Address</label>
-<textarea name="address" rows="4" class="form-control"></textarea>
+
+
+<label class="form-label fw-semibold">
+
+Phone Number
+
+</label>
+
+
+<input
+
+type="text"
+
+name="phone"
+
+class="form-control"
+
+placeholder="Enter Phone Number">
+
+
 </div>
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label fw-semibold">
+
+Email Address
+
+</label>
+
+
+<input
+
+type="email"
+
+name="email"
+
+class="form-control"
+
+placeholder="Enter Email Address">
+
+
+</div>
+
+
+
+
+
+<div class="mb-3">
+
+
+<label class="form-label fw-semibold">
+
+Address
+
+</label>
+
+
+<textarea
+
+name="address"
+
+rows="4"
+
+class="form-control"
+
+placeholder="Enter Address"></textarea>
+
+
+</div>
+
+
+
+
+
 
 <button type="submit" class="btn btn-primary">
-<i class="bi bi-save"></i> Save Customer
+
+
+<i class="bi bi-save"></i>
+
+Save Customer
+
+
 </button>
 
-<a href="customers.php" class="btn btn-secondary">
+
+
+<a href="customers.php" class="btn btn-secondary ms-2">
+
+
+<i class="bi bi-x-circle"></i>
+
 Cancel
+
+
 </a>
+
+
+
 
 </form>
 
-</div>
+
 
 </div>
 
+
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap 5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
+
 </html>

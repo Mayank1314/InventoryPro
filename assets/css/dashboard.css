@@ -26,7 +26,7 @@ SIDEBAR
 ====================== */
 
 
-.sidebar{
+#sidebar{
 
     position:fixed;
 
@@ -57,7 +57,7 @@ SIDEBAR
 
 
 
-.sidebar h2{
+#sidebar h2{
 
     font-size:30px;
 
@@ -69,7 +69,7 @@ SIDEBAR
 
 
 
-.sidebar p{
+#sidebar p{
 
     color:#bfdbfe;
 
@@ -79,7 +79,7 @@ SIDEBAR
 
 
 
-.sidebar a{
+#sidebar a{
 
     display:flex;
 
@@ -109,7 +109,7 @@ SIDEBAR
 
 
 
-.sidebar a i{
+#sidebar a i{
 
     font-size:20px;
 
@@ -117,7 +117,7 @@ SIDEBAR
 
 
 
-.sidebar a:hover{
+#sidebar a:hover{
 
     background:
     rgba(255,255,255,.15);
@@ -134,16 +134,9 @@ SIDEBAR
 MAIN CONTENT
 ====================== */
 
-
-.main-content{
-
-
+#main-content{
     margin-left:260px;
-
-
-    padding:30px;
-
-
+    padding:20px;
 }
 
 
