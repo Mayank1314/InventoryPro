@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *{
     margin:0;
@@ -8,126 +8,68 @@
     font-family:'Poppins',sans-serif;
 }
 
-
 body{
-
-    background:#0f172a;
-
-    color:white;
-
+    background:#f8fafc; /* Crisp architectural off-white canvas */
+    color:#0f172a;       /* High-contrast slate typography */
     min-height:100vh;
-
 }
-
 
 
 /* ======================
 SIDEBAR
 ====================== */
 
-
 #sidebar{
-
     position:fixed;
-
     left:0;
-
     top:0;
-
     width:260px;
-
     height:100vh;
-
-
-    background:
-    linear-gradient(
-        180deg,
-        #1e3a8a,
-        #0f172a
-    );
-
-
+    /* Professional corporate light gradient header stack */
+    background: linear-gradient(180deg, #ffffff, #f1f5f9);
     padding:30px 20px;
-
-
-    box-shadow:
-    10px 0 30px rgba(0,0,0,.3);
-
+    box-shadow: 4px 0 25px rgba(15,23,42,.04); /* Soft rightwards surface shadow */
+    border-right: 1px solid #e2e8f0;
 }
-
-
 
 #sidebar h2{
-
     font-size:30px;
-
     font-weight:700;
-
+    color:#1e3a8a; /* Strong corporate accent header */
     margin-bottom:5px;
-
 }
-
-
 
 #sidebar p{
-
-    color:#bfdbfe;
-
+    color:#64748b; /* Soft muted structural description */
     margin-bottom:30px;
-
 }
-
-
 
 #sidebar a{
-
     display:flex;
-
     align-items:center;
-
     gap:15px;
-
-
     padding:14px 15px;
-
-
     margin-bottom:10px;
-
-
     border-radius:12px;
-
-
-    color:#e0f2fe;
-
-
+    color:#475569; /* Clearly readable structural links */
     text-decoration:none;
-
-
     transition:.3s;
-
 }
-
-
 
 #sidebar a i{
-
     font-size:20px;
-
+    color:#64748b; /* Neutral icon weights */
 }
-
-
 
 #sidebar a:hover{
-
-    background:
-    rgba(255,255,255,.15);
-
-
+    background:#e2e8f0; /* Soft gray hovering block */
+    color:#2563eb;       /* Brand action accent on focus */
     transform:translateX(5px);
-
 }
 
-
+#sidebar a:hover i{
+    color:#2563eb;
+}
 
 
 /* ======================
@@ -140,345 +82,150 @@ MAIN CONTENT
 }
 
 
-
-
-
 /* ======================
 TOP BAR
 ====================== */
 
-
 .topbar{
-
-
     display:flex;
-
-
     justify-content:space-between;
-
-
     align-items:center;
-
-
     margin-bottom:35px;
-
-
 }
-
-
 
 .topbar h2{
-
     font-size:32px;
-
     font-weight:700;
-
+    color:#0f172a;
 }
-
-
 
 .topbar div{
-
-    background:
-    rgba(255,255,255,.12);
-
-
+    background:#ffffff;
     padding:12px 20px;
-
-
     border-radius:15px;
-
-
-    backdrop-filter:blur(10px);
-
+    border:1px solid #e2e8f0;
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.03);
+    color:#334155;
 }
-
-
-
 
 
 /* ======================
 DASHBOARD CARDS
 ====================== */
 
-
 .dashboard-card{
-
-
-    background:
-    rgba(255,255,255,.12);
-
-
-    border:
-
-    1px solid rgba(255,255,255,.2);
-
-
-
-    backdrop-filter:blur(15px);
-
-
-
+    background:#ffffff;
+    border:1px solid #e2e8f0;
     padding:25px;
-
-
-
     border-radius:20px;
-
-
-
     height:170px;
-
-
-
     transition:.3s;
-
-
-
-    box-shadow:
-
-    0 15px 40px rgba(0,0,0,.25);
-
-
+    box-shadow:0 4px 20px rgba(15,23,42,.03); /* Soft surface elevation lift */
+    color:#0f172a;
 }
-
-
 
 .dashboard-card:hover{
-
-
     transform:translateY(-8px);
-
-
-
-    box-shadow:
-
-    0 20px 50px rgba(37,99,235,.4);
-
-
+    box-shadow:0 15px 35px rgba(37,99,235,.12); /* Interactive glowing blue shadows */
 }
-
-
-
 
 .dashboard-card i{
-
-
     font-size:40px;
-
-
-    color:#38bdf8;
-
-
+    color:#2563eb; /* True royal action item identifier */
 }
-
-
 
 .dashboard-card h3{
-
-
     margin-top:15px;
-
-
     font-size:32px;
-
-
     font-weight:700;
-
-
+    color:#0f172a;
 }
-
-
 
 .dashboard-card p{
-
-
-    color:#dbeafe;
-
-
+    color:#64748b;
     margin:0;
-
-
 }
-
-
-
 
 
 /* ======================
 TABLE SECTIONS
 ====================== */
 
-
 .table-box{
-
-
     margin-top:35px;
-
-
-    background:
-
-    rgba(255,255,255,.12);
-
-
-
-    border:
-
-    1px solid rgba(255,255,255,.2);
-
-
-
-    backdrop-filter:blur(15px);
-
-
-
+    background:#ffffff;
+    border:1px solid #e2e8f0;
     padding:25px;
-
-
-
     border-radius:20px;
-
-
-
-    box-shadow:
-
-    0 15px 40px rgba(0,0,0,.25);
-
-
+    box-shadow:0 4px 20px rgba(15,23,42,.03);
 }
-
-
-
 
 .table-box h3{
-
-
     margin-bottom:20px;
-
-
     font-weight:600;
-
-
+    color:#0f172a;
 }
-
-
-
-
 
 .table{
-
-
-    color:white;
-
+    color:#0f172a;
     margin:0;
-
-
 }
-
-
 
 .table th{
-
-
-    color:#93c5fd;
-
-
-    border-color:
-    rgba(255,255,255,.2);
-
-
+    color:#475569; /* Deep header typography */
+    border-color:#f1f5f9;
+    background:#f8fafc; /* Crisp separation field row banner */
 }
-
-
 
 .table td{
-
-
-    color:white;
-
-
-    border-color:
-    rgba(255,255,255,.15);
-
-
+    color:#334155;
+    border-color:#f1f5f9;
 }
-
-
 
 .text-danger{
-
-
     font-weight:600;
-
-
+    color:#dc2626 !important; /* Explicit light text danger validation overriding */
 }
-
-
-
 
 
 /* ======================
 SCROLL
 ====================== */
 
-
 ::-webkit-scrollbar{
-
     width:8px;
-
 }
-
 
 ::-webkit-scrollbar-thumb{
-
-    background:#2563eb;
-
+    background:#cbd5e1; /* Neutral soft slate handling pullbar */
     border-radius:10px;
-
 }
 
-
+::-webkit-scrollbar-thumb:hover{
+    background:#94a3b8;
+}
 
 
 /* ======================
 RESPONSIVE
 ====================== */
 
-
 @media(max-width:992px){
+    .sidebar{
+        width:80px;
+    }
 
+    .sidebar h2,
+    .sidebar p,
+    .sidebar a{
+        font-size:0;
+    }
 
-.sidebar{
+    .sidebar a i{
+        font-size:22px;
+    }
 
-    width:80px;
-
-}
-
-
-.sidebar h2,
-.sidebar p,
-.sidebar a{
-
-    font-size:0;
-
-}
-
-
-
-.sidebar a i{
-
-    font-size:22px;
-
-}
-
-
-
-.main-content{
-
-    margin-left:80px;
-
-}
-
-
-
+    .main-content{
+        margin-left:80px;
+    }
 }

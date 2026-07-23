@@ -7,43 +7,60 @@ $conn = mysqli_connect(
     "inventory_management"
 );
 
-if (!$conn) {
+if(!$conn){
     die("Database Connection Failed");
 }
 
-// Total Products
+/* ---------------- Contact Form ---------------- */
+
+$success = "";
+
+if(isset($_POST['send_message'])){
+
+    $name = mysqli_real_escape_string($conn,$_POST['name']);
+    $email = mysqli_real_escape_string($conn,$_POST['email']);
+    $subject = mysqli_real_escape_string($conn,$_POST['subject']);
+    $message = mysqli_real_escape_string($conn,$_POST['message']);
+
+    $sql = "INSERT INTO contact_messages
+    (name,email,subject,message)
+    VALUES
+    ('$name','$email','$subject','$message')";
+
+    if(mysqli_query($conn,$sql)){
+        $success = "Message Sent Successfully!";
+    }
+
+}
+
+/* ---------------- Dashboard Data ---------------- */
+
 $product_count = mysqli_fetch_assoc(
-    mysqli_query($conn, "SELECT COUNT(*) AS total FROM products")
+mysqli_query($conn,"SELECT COUNT(*) AS total FROM products")
 )['total'];
 
-// Total Suppliers
 $supplier_count = mysqli_fetch_assoc(
-    mysqli_query($conn, "SELECT COUNT(*) AS total FROM suppliers")
+mysqli_query($conn,"SELECT COUNT(*) AS total FROM suppliers")
 )['total'];
 
-// Today's Sales
 $sales_today = mysqli_fetch_assoc(
-    mysqli_query(
-        $conn,
-        "SELECT COUNT(*) AS total
-         FROM sales
-         WHERE DATE(created_at)=CURDATE()"
-    )
+mysqli_query(
+$conn,
+"SELECT COUNT(*) AS total
+FROM sales
+WHERE DATE(created_at)=CURDATE()")
 )['total'];
 
-// Today's Sales
-
-// Latest Products
-// Latest Products
-$latest_products = mysqli_query($conn, "
-    SELECT product_name,
-           category,
-           quantity,
-           unit,
-           selling_price
-    FROM products
-    ORDER BY created_at DESC
-    LIMIT 6
+$latest_products = mysqli_query($conn,"
+SELECT
+product_name,
+category,
+quantity,
+unit,
+selling_price
+FROM products
+ORDER BY created_at DESC
+LIMIT 6
 ");
 
 ?>
@@ -52,142 +69,210 @@ $latest_products = mysqli_query($conn, "
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory & Stock Management System</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+<title>InventoryPro</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link
+rel="stylesheet"
+href="assets/css/style.css">
+
 </head>
 
-<body class="dark-mode">
+<body>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 
 <nav class="navbar navbar-expand-lg fixed-top">
 
-    <div class="container">
+<div class="container">
 
-        <a class="navbar-brand" href="#">
-            📦 InventoryPro
-        </a>
+<a class="navbar-brand" href="#">
+📦 InventoryPro
+</a>
 
-        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav">
+<button
+class="navbar-toggler bg-white"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#navbarNav">
 
-            <span class="navbar-toggler-icon"></span>
+<span class="navbar-toggler-icon"></span>
 
-        </button>
+</button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+<div class="collapse navbar-collapse" id="navbarNav">
 
-            <ul class="navbar-nav ms-auto">
+<ul class="navbar-nav ms-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#features">Features</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-<li class="nav-item me-3">
-    <button id="themeToggle" class="btn btn-outline-light">
-        <i class="bi bi-moon-stars-fill"></i>
-    </button>
+<li class="nav-item">
+<a class="nav-link" href="#">Home</a>
 </li>
-                <li class="nav-item ms-3">
 
-                    <a href="login.php" class="btn btn-light login-btn">
-                        Login
-                    </a>
+<li class="nav-item">
+<a class="nav-link" href="#features">Features</a>
+</li>
 
-                </li>
+<li class="nav-item">
+<a class="nav-link" href="#about">About</a>
+</li>
 
-            </ul>
+<li class="nav-item">
+<a class="nav-link" href="#contact">Contact</a>
+</li>
 
-        </div>
+<li class="nav-item me-3">
 
-    </div>
+<button
+id="themeToggle"
+class="btn btn-outline-light">
+
+<i class="bi bi-moon-stars-fill"></i>
+
+</button>
+
+</li>
+
+<li class="nav-item ms-3">
+
+<a
+href="login.php"
+class="btn btn-light login-btn">
+
+Login
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
 
 </nav>
 
-<!-- Hero -->
+<!-- HERO -->
 
 <section class="hero">
 
-    <div class="container">
+<div class="container">
 
-        <div class="row align-items-center">
+<div class="row align-items-center">
 
-            <div class="col-lg-6">
+<div class="col-lg-6">
 
-                <span class="badge bg-warning text-dark mb-3">
-                    Smart Inventory Solution
-                </span>
+<span class="badge bg-warning text-dark mb-3">
 
-                <h1>
+Smart Inventory Solution
 
-                    Inventory & Stock
-                    Management System
+</span>
 
-                </h1>
+<h1>
 
-                <p>
+Inventory & Stock
+Management System
 
-                    Easily manage products, suppliers, purchases,
-                    sales and stock through one powerful dashboard.
+</h1>
 
-                </p>
+<p>
 
-                <a href="login.php" class="btn btn-success btn-lg me-3">
-                    Get Started
-                </a>
+Easily manage products,
+suppliers, purchases,
+sales and stock from one
+powerful dashboard.
 
-                <a href="#features" class="btn btn-outline-light btn-lg">
-                    Learn More
-                </a>
+</p>
 
-            </div>
+<a
+href="login.php"
+class="btn btn-success btn-lg me-3">
 
-            <div class="col-lg-6 text-center">
+Get Started
 
-                <img src="assets/images/hero.png"
-                    class="img-fluid hero-image">
+</a>
 
-            </div>
+<a
+href="#features"
+class="btn btn-outline-light btn-lg">
+
+Learn More
+
+</a>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img
+src="assets/images/hero.png"
+class="img-fluid hero-image">
+
+</div>
+
 <div class="floating-card card1">
-    <h3 class="counter" data-target="<?= $product_count ?>">0</h3>
-    <p>Products</p>
+
+<h3
+class="counter"
+data-target="<?= $product_count ?>">
+
+0
+
+</h3>
+
+<p>Products</p>
+
 </div>
 
 <div class="floating-card card2">
-    <h3 class="counter" data-target="<?= $supplier_count ?>">0</h3>
-    <p>Suppliers</p>
+
+<h3
+class="counter"
+data-target="<?= $supplier_count ?>">
+
+0
+
+</h3>
+
+<p>Suppliers</p>
+
 </div>
 
 <div class="floating-card card3">
-    <h3 class="counter" data-target="<?= $sales_today ?>">0</h3>
-    <p>Sales Today</p>
+
+<h3
+class="counter"
+data-target="<?= $sales_today ?>">
+
+0
+
+</h3>
+
+<p>Sales Today</p>
+
 </div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
-<!-- Features -->
+<!-- FEATURES -->
 
 <section class="features" id="features">
 
@@ -199,76 +284,77 @@ $latest_products = mysqli_query($conn, "
 
         <div class="row g-4">
 
-    <div class="col-md-3">
-        <div class="feature-box">
-            <i class="bi bi-box-seam"></i>
-            <h4>Products</h4>
-            <p>Manage inventory with real-time stock updates.</p>
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="feature-box">
+                    <i class="bi bi-box-seam"></i>
+                    <h4>Products</h4>
+                    <p>Manage inventory with real-time stock updates.</p>
+                </div>
+            </div>
 
-    <div class="col-md-3">
-        <div class="feature-box">
-            <i class="bi bi-tags"></i>
-            <h4>Categories</h4>
-            <p>Organize products into categories for faster management.</p>
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="feature-box">
+                    <i class="bi bi-tags"></i>
+                    <h4>Categories</h4>
+                    <p>Organize products into categories for faster management.</p>
+                </div>
+            </div>
 
-    <div class="col-md-3">
-        <div class="feature-box">
-            <i class="bi bi-truck"></i>
-            <h4>Suppliers</h4>
-            <p>Store supplier details and manage procurement easily.</p>
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="feature-box">
+                    <i class="bi bi-truck"></i>
+                    <h4>Suppliers</h4>
+                    <p>Store supplier details and manage procurement easily.</p>
+                </div>
+            </div>
 
-    <div class="col-md-3">
-        <div class="feature-box">
-            <i class="bi bi-people"></i>
-            <h4>Customers</h4>
-            <p>Maintain customer records and purchase history.</p>
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="feature-box">
+                    <i class="bi bi-people"></i>
+                    <h4>Customers</h4>
+                    <p>Maintain customer records and purchase history.</p>
+                </div>
+            </div>
 
-    <div class="col-md-3">
-        <div class="feature-box">
-            <i class="bi bi-cart-plus"></i>
-            <h4>Purchases</h4>
-            <p>Track purchases and automatically update inventory.</p>
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="feature-box">
+                    <i class="bi bi-cart-plus"></i>
+                    <h4>Purchases</h4>
+                    <p>Track purchases and automatically update inventory.</p>
+                </div>
+            </div>
 
-    <div class="col-md-3">
-        <div class="feature-box">
-            <i class="bi bi-cash-stack"></i>
-            <h4>Sales</h4>
-            <p>Generate invoices and monitor daily sales instantly.</p>    
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="feature-box">
+                    <i class="bi bi-cash-stack"></i>
+                    <h4>Sales</h4>
+                    <p>Generate invoices and monitor daily sales instantly.</p>
+                </div>
+            </div>
 
-    <div class="col-md-3">
-        <div class="feature-box">
-            <i class="bi bi-bar-chart-line"></i>
-            <h4>Reports</h4>
-            <p>Analyze purchases, sales, and inventory trends.</p> 
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="feature-box">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <h4>Reports</h4>
+                    <p>Analyze purchases, sales and inventory trends.</p>
+                </div>
+            </div>
 
-    <div class="col-md-3">
-        <div class="feature-box">
-            <i class="bi bi-shield-lock"></i>
-            <h4>Secure Login</h4>
-            <p>Protected authentication with role-based access control.</p>
-            
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="feature-box">
+                    <i class="bi bi-shield-lock"></i>
+                    <h4>Secure Login</h4>
+                    <p>Protected authentication with role-based access control.</p>
+                </div>
+            </div>
 
-</div>
+        </div>
+
+    </div>
 
 </section>
 
-<!-- About -->
+<!-- ABOUT -->
 
 <section id="about" class="py-5">
 
@@ -283,11 +369,11 @@ $latest_products = mysqli_query($conn, "
                 </h2>
 
                 <p class="lead">
-                    InventoryPro is a modern inventory and stock management system designed to help businesses manage products, suppliers, customers, purchases, and sales efficiently.
+                    InventoryPro is a modern Inventory & Stock Management System designed to help businesses manage products, suppliers, customers, purchases and sales efficiently.
                 </p>
 
                 <p>
-                    It provides real-time inventory tracking, detailed reports, secure login, and an intuitive dashboard.
+                    It provides real-time inventory tracking, secure login, powerful reports and an easy-to-use dashboard.
                 </p>
 
             </div>
@@ -326,6 +412,8 @@ $latest_products = mysqli_query($conn, "
 
 </section>
 
+<!-- LATEST PRODUCTS -->
+
 <section class="latest-products py-5">
 
     <div class="container">
@@ -336,29 +424,34 @@ $latest_products = mysqli_query($conn, "
 
         <div class="row">
 
-            <?php while($product = mysqli_fetch_assoc($latest_products)) { ?>
+            <?php while($product = mysqli_fetch_assoc($latest_products)){ ?>
 
                 <div class="col-md-4 mb-4">
 
-                    <div class="feature-box">
+                    <div class="feature-box h-100">
 
                         <i class="bi bi-box-seam"></i>
 
-                        <h4><?= htmlspecialchars($product['product_name']) ?></h4>
+                        <h4>
+                            <?= htmlspecialchars($product['product_name']) ?>
+                        </h4>
 
-<p class="mb-1">
-    <strong>Category:</strong>
-    <?= htmlspecialchars($product['category']) ?>
-</p>
+                        <p class="mb-2">
+                            <strong>Category:</strong>
+                            <?= htmlspecialchars($product['category']) ?>
+                        </p>
 
-<p class="mb-1">
-    <strong>Stock:</strong>
-    <?= $product['quantity'] . " " . htmlspecialchars($product['unit']) ?>
-</p>
+                        <p class="mb-2">
+                            <strong>Stock:</strong>
+                            <?= $product['quantity'] ?>
+                            <?= htmlspecialchars($product['unit']) ?>
+                        </p>
 
-<p class="text-success fw-bold">
-    ₹<?= number_format($product['selling_price'], 2) ?>
-</p>
+                        <h5 class="text-success">
+
+                            ₹<?= number_format($product['selling_price'],2) ?>
+
+                        </h5>
 
                     </div>
 
@@ -372,84 +465,245 @@ $latest_products = mysqli_query($conn, "
 
 </section>
 
+<!-- CONTACT -->
+
+<!-- Contact Section -->
+
+<section id="contact" class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2>Contact Us</h2>
+
+            <p class="text-muted">
+                Have any questions? We'd love to hear from you.
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            <!-- Contact Info -->
+
+            <div class="col-lg-5 mb-4">
+
+                <div class="feature-box h-100">
+
+                    <h4 class="mb-4">Get in Touch</h4>
+
+                    <p>
+                        <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                        Indore, Madhya Pradesh, India
+                    </p>
+
+                    <p>
+                        <i class="bi bi-envelope-fill text-primary me-2"></i>
+                        inventorypro@gmail.com
+                    </p>
+
+                    <p>
+                        <i class="bi bi-telephone-fill text-primary me-2"></i>
+                        +91 98765 43210
+                    </p>
+
+                    <p>
+                        <i class="bi bi-clock-fill text-primary me-2"></i>
+                        Monday - Saturday
+                        <br>
+                        9:00 AM - 6:00 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Contact Form -->
+
+            <div class="col-lg-7">
+
+                <div class="feature-box">
+
+                    <?php if(isset($_GET['success'])){ ?>
+
+                        <div class="alert alert-success">
+
+                            Message sent successfully!
+
+                        </div>
+
+                    <?php } ?>
+
+                    <?php if(isset($_GET['error'])){ ?>
+
+                        <div class="alert alert-danger">
+
+                            Failed to send message!
+
+                        </div>
+
+                    <?php } ?>
+
+                    <form action="contact_process.php" method="POST">
+
+                        <div class="mb-3">
+
+                            <input
+                                type="text"
+                                name="name"
+                                class="form-control"
+                                placeholder="Your Name"
+                                required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="Your Email"
+                                required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <input
+                                type="text"
+                                name="subject"
+                                class="form-control"
+                                placeholder="Subject"
+                                required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <textarea
+                                name="message"
+                                class="form-control"
+                                rows="5"
+                                placeholder="Write your message..."
+                                required></textarea>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100">
+
+                            <i class="bi bi-send-fill"></i>
+                            Send Message
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
 <footer>
 
     <div class="container">
 
-        <p>
+        <p class="mb-0">
 
-            © 2026 Inventory & Stock Management System
+            © 2026 InventoryPro | Inventory & Stock Management System
 
         </p>
 
     </div>
-
-
 
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    /* Counter Animation */
 
     const counters = document.querySelectorAll(".counter");
 
-    counters.forEach(counter => {
+    counters.forEach(counter=>{
 
-        const target = parseInt(counter.getAttribute("data-target"));
+        const target = parseInt(counter.dataset.target);
+
         let current = 0;
 
-        const increment = Math.max(1, Math.ceil(target / 50));
+        const increment = Math.max(1,Math.ceil(target/50));
 
-        function updateCounter() {
+        function update(){
 
             current += increment;
 
-            if (current >= target) {
+            if(current>=target){
+
                 counter.innerText = target;
-            } else {
+
+            }else{
+
                 counter.innerText = current;
-                requestAnimationFrame(updateCounter);
+
+                requestAnimationFrame(update);
+
             }
 
         }
 
-        updateCounter();
+        update();
+
+    });
+
+    /* Dark Mode */
+
+    const toggle=document.getElementById("themeToggle");
+
+    if(localStorage.getItem("theme")==="dark"){
+
+        document.body.classList.add("dark-mode");
+
+        toggle.innerHTML='<i class="bi bi-sun-fill"></i>';
+
+    }
+
+    toggle.addEventListener("click",function(){
+
+        document.body.classList.toggle("dark-mode");
+
+        if(document.body.classList.contains("dark-mode")){
+
+            localStorage.setItem("theme","dark");
+
+            toggle.innerHTML='<i class="bi bi-sun-fill"></i>';
+
+        }else{
+
+            localStorage.setItem("theme","light");
+
+            toggle.innerHTML='<i class="bi bi-moon-stars-fill"></i>';
+
+        }
 
     });
 
 });
-</script>
-
-<script>
-
-const toggle = document.getElementById("themeToggle");
-const body = document.body;
-
-// Load saved theme
-if(localStorage.getItem("theme") === "dark"){
-    body.classList.add("dark-mode");
-    toggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
-}else{
-    toggle.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
-}
-
-// Toggle theme
-toggle.addEventListener("click", function(){
-
-    body.classList.toggle("dark-mode");
-
-    if(body.classList.contains("dark-mode")){
-        localStorage.setItem("theme","dark");
-        toggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
-    }else{
-        localStorage.setItem("theme","light");
-        toggle.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
-    }
-
-});
 
 </script>
+
 </body>
+
 </html>
