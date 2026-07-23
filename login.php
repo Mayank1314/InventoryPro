@@ -565,7 +565,29 @@ Forgot Username?
 
 <script src="assets/js/login.js"></script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    const toggle = document.querySelector(".toggle-password");
+    const password = document.getElementById("password");
+    const icon = toggle.querySelector("i");
+
+    toggle.addEventListener("click", function () {
+
+        if (password.type === "password") {
+            password.type = "text";
+            icon.classList.remove("bi-eye-fill");
+            icon.classList.add("bi-eye-slash-fill");
+        } else {
+            password.type = "password";
+            icon.classList.remove("bi-eye-slash-fill");
+            icon.classList.add("bi-eye-fill");
+        }
+
+    });
+
+});
+</script>
 </body>
 
 

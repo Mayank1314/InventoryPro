@@ -7,322 +7,579 @@
     font-family:'Poppins',sans-serif;
 }
 
-/* ================= DEFAULT LIGHT MODE CANVASES ================= */
-
 body{
-    background:#f8fafc;
-    color:#0f172a;
-    transition: all .35s ease;
+    background:#f1f5f9;
 }
 
 
 /* ================= NAVBAR ================= */
 
 .navbar{
-    background:#ffffff !important;
+    background:#0f172a !important;
     padding:18px 0;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-    transition: all .35s ease;
-}
+    }
 
 .navbar-brand{
-    color:#2563eb !important;
+    color:#38bdf8 !important;
     font-size:30px;
     font-weight:700;
 }
 
 .nav-link{
-    color:#0f172a !important;
+    color:white !important;
     margin-left:20px;
     font-weight:500;
 }
 
 .nav-link:hover{
-    color:#2563eb !important;
+    color:#38bdf8 !important;
 }
 
+
 .login-btn{
+
     background:#2563eb;
     color:white !important;
     border-radius:50px;
     padding:10px 25px;
     font-weight:600;
+
 }
 
 .login-btn:hover{
+
     background:#1d4ed8;
+
 }
+
 
 
 /* ================= HERO SECTION ================= */
 
+
 .hero{
+
     padding:120px 0 100px;
-    background:linear-gradient(135deg,#dbeafe,#60a5fa);
-    color:#0f172a;
-    transition: all .35s ease;
+    
+    background:
+    linear-gradient(
+    135deg,
+    #0f172a,
+    #2563eb
+    );
+
+    color:white;
+
 }
 
+
 .hero h1{
+
     font-size:55px;
     font-weight:700;
     line-height:1.2;
+
 }
 
+
 .hero p{
+
     font-size:20px;
     margin-top:20px;
     line-height:1.8;
-    color:#334155;
+    color:#e2e8f0;
+
 }
+
 
 .hero-image{
+
     width:100%;
     max-width:500px;
+
     animation:float 3s infinite ease-in-out;
+
 }
 
+
 @keyframes float{
-    0%{ transform:translateY(0); }
-    50%{ transform:translateY(-15px); }
-    100%{ transform:translateY(0); }
+
+    0%{
+transform:translateY(0);
+    }
+
+    50%{
+transform:translateY(-15px);
+    }
+
+    100%{
+transform:translateY(0);
+    }
+
 }
+
+
 
 
 /* ================= FEATURES ================= */
 
+
 .features{
+
     padding:80px 0;
+
 }
+
 
 .feature-box{
+
     background:white;
+
     padding:35px;
+
     border-radius:20px;
+
     text-align:center;
-    box-shadow:0 10px 30px rgba(15,23,42,.05);
-    transition:.3s, background .35s ease, color .35s ease;
-    color:#0f172a;
+
+    box-shadow:
+0 10px 30px rgba(15,23,42,.12);
+
+    transition:.3s;
+
 }
 
-.feature-box p{
-    color:#475569;
-}
 
 .feature-box:hover{
+
     transform:translateY(-10px);
-    box-shadow:0 20px 40px rgba(37,99,235,.2);
+
+    box-shadow:
+0 20px 40px rgba(37,99,235,.2);
+
 }
+
 
 .feature-box i{
+
     font-size:50px;
+
     color:#2563eb;
+
     margin-bottom:20px;
+
 }
 
-#about{
-    background:#ffffff;
-    transition: all .35s ease;
-}
-
-.latest-products{
-    background:#f8fafc;
-    transition: all .35s ease;
-}
 
 
 /* ================= FOOTER ================= */
 
+
 footer{
-    background:#e2e8f0;
-    color:#0f172a;
+    
+    background:#020617;
+
+    color:white;
+
     padding:25px;
+
     text-align:center;
-    transition: all .35s ease;
+    
 }
+
 
 
 /* ================= LOGIN PAGE ================= */
 
+
 .login-body{
-    background:linear-gradient(135deg,#dbeafe,#60a5fa);
+
+    background:
+linear-gradient(
+135deg,
+    #0f172a,
+    #2563eb
+);
+
     height:100vh;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
-    transition: all .35s ease;
+    
 }
+
+
 
 .login-card{
+
     width:420px;
+
     background:white;
+
     padding:40px;
+
     border-radius:20px;
-    box-shadow:0 20px 50px rgba(0,0,0,.08);
+
+    box-shadow:
+0 20px 50px rgba(0,0,0,.3);
+
 }
+
 
 .login-card h2{
+
     color:#2563eb;
+
     font-weight:700;
+
 }
+
 
 .login-card p{
+
     color:#64748b;
+
 }
+
 
 .input-group-text{
+
     background:#2563eb;
+
     color:white;
+
     border:none;
+
 }
+
 
 .form-control{
+
     height:50px;
-    border: 1px solid #cbd5e1;
+    
 }
+
 
 .login-card button{
+
     height:50px;
+
     background:#2563eb;
+
     border:none;
+
     font-size:18px;
+
     font-weight:600;
+
     border-radius:10px;
-    color: white;
+    
 }
+
 
 .login-card button:hover{
+
     background:#1d4ed8;
+
 }
+
 
 .login-card a{
+
     color:#2563eb;
+
     text-decoration:none;
+
     font-weight:600;
+
 }
 
+/* Theme Transition */
 
-/* ---------- OPTIONAL DARK MODE OVERRIDES ---------- */
-/* If you ever add the class "dark-mode" to your body element, these styles apply */
-
-body.dark-mode {
-    background: #0f172a;
-    color: white;
-}
-
-body.dark-mode .navbar {
-    background: #0f172a !important;
-    box-shadow: none;
-}
-
-body.dark-mode .navbar-brand {
-    color: #38bdf8 !important;
-}
-
-body.dark-mode .nav-link {
-    color: white !important;
-}
-
-body.dark-mode .nav-link:hover {
-    color: #38bdf8 !important;
-}
-
-body.dark-mode .hero {
-    background: linear-gradient(135deg, #0f172a, #2563eb);
-    color: white;
-}
-
-body.dark-mode .hero p {
-    color: #e2e8f0;
-}
-
-body.dark-mode .feature-box {
-    background: #1e293b;
-    color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,.3);
-}
-
-body.dark-mode .feature-box p {
-    color: #cbd5e1;
-}
-
-body.dark-mode #about {
-    background: #0f172a;
-}
-
-body.dark-mode .latest-products {
-    background: #1e293b;
-}
-
-body.dark-mode footer {
-    background: #020617;
-    color: white;
-}
-
-body.dark-mode .login-body {
-    background: linear-gradient(135deg, #0f172a, #2563eb);
-}
-
-body.dark-mode .login-card {
-    background: #1e293b;
-    color: white;
-    box-shadow: 0 20px 50px rgba(0,0,0,.4);
-}
-
-body.dark-mode .login-card p {
-    color: #94a3b8;
-}
-
-/* ================= CONTACT ================= */
-
-#contact{
-    padding:80px 0;
-    background:#ffffff;
-}
-
-#contact h2{
-    font-weight:700;
-    color:#2563eb;
-}
-
-#contact .feature-box{
-    height:100%;
-}
-
-#contact .form-control{
-    border-radius:10px;
-    padding:12px;
-}
-
-#contact textarea{
-    resize:none;
+body,
+.navbar,
+.feature-box,
+.hero,
+section,
+footer{
+    transition: all .35s ease;
 }
 
 /* Dark Mode */
 
-body.dark-mode #contact{
+body.dark-mode{
+
+    background:#0f172a;
+color:#fff;
+
+}
+
+body.dark-mode .navbar{
+
+    background:#111827 !important;
+
+}
+
+body.dark-mode .feature-box{
+
+    background:#1e293b;
+    color:white;
+border:1px solid #334155;
+
+}
+
+body.dark-mode .feature-box p{
+
+    color:#cbd5e1;
+
+}
+
+body.dark-mode footer{
+
+    background:#111827;
+    color:white;
+    
+}
+
+body.dark-mode #about{
+
+    background:#1e293b !important;
+    color:white;
+
+}
+
+body.dark-mode .latest-products{
+
     background:#0f172a;
 }
 
-body.dark-mode #contact h2{
-    color:#38bdf8;
+body.dark-mode .recent-sales{
+
+    background:#1e293b !important;
 }
 
-body.dark-mode #contact .text-muted{
-    color:#cbd5e1 !important;
+/* =========================
+   DARK MODE
+========================= */
+
+
+body.dark-mode{
+
+    background:#0f172a;
+    color:#e2e8f0;
+
 }
 
-body.dark-mode #contact .feature-box{
+
+/* Sidebar */
+
+body.dark-mode #sidebar{
+
+    background:#111827;
+    border-color:#334155;
+
+}
+
+
+body.dark-mode #sidebar .brand{
+
+    color:white;
+
+}
+
+
+body.dark-mode #sidebar ul li a{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark-mode #sidebar ul li a:hover,
+body.dark-mode #sidebar ul li a.active{
+
+    background:#2563eb;
+    color:white;
+
+}
+
+
+/* Main Area */
+
+body.dark-mode #main-content{
+
+    background:#0f172a;
+
+}
+
+
+/* Cards */
+
+body.dark-mode .card-box,
+body.dark-mode .card-counter,
+body.dark-mode .card{
+
+    background:#1e293b;
+    color:#f8fafc;
+    border-color:#334155;
+
+}
+
+
+body.dark-mode .card h3,
+body.dark-mode .card h6{
+
+    color:#f8fafc;
+
+}
+
+
+/* Tables */
+
+body.dark-mode .table-container{
+
+    background:#1e293b;
+    border-color:#334155;
+
+}
+
+
+body.dark-mode table{
+
+    color:#e2e8f0 !important;
+
+}
+
+
+body.dark-mode .table tbody tr:hover{
+
+    background:#334155;
+
+}
+
+
+/* Inputs */
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea{
+
     background:#1e293b;
     color:white;
+    border-color:#475569;
+
 }
 
-body.dark-mode #contact .form-control{
-    background:#334155;
+/* =========================
+   DARK MODE
+========================= */
+
+
+body.dark-mode{
+
+    background:#0f172a;
+    color:#e2e8f0;
+
+}
+
+
+/* Sidebar */
+
+body.dark-mode #sidebar{
+
+    background:#111827;
+    border-color:#334155;
+
+}
+
+
+body.dark-mode #sidebar .brand{
+
     color:white;
-    border:1px solid #475569;
+
 }
 
-body.dark-mode #contact .form-control::placeholder{
+
+body.dark-mode #sidebar ul li a{
+
     color:#cbd5e1;
+
+}
+
+
+body.dark-mode #sidebar ul li a:hover,
+body.dark-mode #sidebar ul li a.active{
+
+    background:#2563eb;
+    color:white;
+
+}
+
+
+/* Main Area */
+
+body.dark-mode #main-content{
+
+    background:#0f172a;
+
+}
+
+
+/* Cards */
+
+body.dark-mode .card-box,
+body.dark-mode .card-counter,
+body.dark-mode .card{
+
+    background:#1e293b;
+    color:#f8fafc;
+    border-color:#334155;
+
+}
+
+
+body.dark-mode .card h3,
+body.dark-mode .card h6{
+
+    color:#f8fafc;
+
+}
+
+
+/* Tables */
+
+body.dark-mode .table-container{
+
+    background:#1e293b;
+    border-color:#334155;
+
+}
+
+
+body.dark-mode table{
+
+    color:#e2e8f0 !important;
+
+}
+
+
+body.dark-mode .table tbody tr:hover{
+
+    background:#334155;
+
+}
+
+
+/* Inputs */
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea{
+
+    background:#1e293b;
+    color:white;
+    border-color:#475569;
+
 }

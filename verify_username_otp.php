@@ -2,28 +2,20 @@
 
 session_start();
 
-date_default_timezone_set('Asia/Kolkata');
 
 $conn=mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "inventory_management"
+"localhost",
+"root",
+"",
+"inventory_management"
 );
 
 
-if(!$conn){
 
-    die("Database Connection Failed");
+if(!isset($_SESSION['username_email'])){
 
-}
-
-
-// Check user came from forgot password
-if(!isset($_SESSION['reset_user'])){
-
-    header("Location: forgot_password.php");
-    exit();
+header("Location: forgot_username.php");
+exit();
 
 }
 
@@ -32,66 +24,64 @@ if(!isset($_SESSION['reset_user'])){
 if(isset($_POST['verify'])){
 
 
-    $username=$_SESSION['reset_user'];
+$email=$_SESSION['username_email'];
 
 
-    $otp=mysqli_real_escape_string(
-        $conn,
-        $_POST['otp']
-    );
+$otp=$_POST['otp'];
 
 
 
-    $check=mysqli_query(
-        $conn,
-        "
-        SELECT *
-        FROM users
-        WHERE username='$username'
-        AND otp='$otp'
-        AND otp_expire > NOW()
-        "
-    );
+$result=mysqli_query($conn,
+
+"
+SELECT *
+FROM users
+WHERE email='$email'
+AND otp='$otp'
+AND otp_expire > NOW()
+
+");
 
 
 
-    if(mysqli_num_rows($check)>0){
-
-
-        // Mark OTP verified
-
-        $_SESSION['otp_verified']=true;
-
-
-        // Remove OTP after verification
-
-        mysqli_query(
-            $conn,
-            "
-            UPDATE users
-            SET otp=NULL,
-            otp_expire=NULL
-            WHERE username='$username'
-            "
-        );
-
-
-        header(
-            "Location: reset_password.php"
-        );
-
-        exit();
+if(mysqli_num_rows($result)>0){
 
 
 
-    }
-    else{
+$user=mysqli_fetch_assoc($result);
 
 
-        $error="Invalid or Expired OTP";
+
+$_SESSION['found_username']=$user['username'];
 
 
-    }
+
+mysqli_query($conn,
+
+"
+UPDATE users
+SET otp=NULL,
+otp_expire=NULL
+WHERE email='$email'
+
+");
+
+
+header("Location: show_username.php");
+
+exit();
+
+
+}
+
+else{
+
+
+$error="Invalid or Expired OTP";
+
+
+}
+
 
 
 }

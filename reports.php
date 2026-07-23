@@ -237,7 +237,6 @@ WHERE quantity<=5
 
 <?php
 
-session_start();
 
 
 if(!isset($_SESSION['username']))
@@ -990,7 +989,7 @@ data:[
 </script>
 
 
-
+<script src="assets/js/darkmode.js"></script>
 </body>
 
 </html>

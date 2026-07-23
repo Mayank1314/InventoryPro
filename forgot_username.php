@@ -1,10 +1,17 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors',1);
+
+
 if(session_status() == PHP_SESSION_NONE)
 {
     session_start();
-}   
+}
+
+
 date_default_timezone_set('Asia/Kolkata');
+
 
 $conn=mysqli_connect(
 "localhost",
@@ -21,18 +28,12 @@ if(!$conn){
 }
 
 
-// PHPMailer file
+
 include "includes/mail_config.php";
 
 
 
 if(isset($_POST['send_otp'])){
-
-
-$username=mysqli_real_escape_string(
-$conn,
-$_POST['username']
-);
 
 
 $email=mysqli_real_escape_string(
@@ -47,8 +48,7 @@ $conn,
 "
 SELECT *
 FROM users
-WHERE username='$username'
-AND email='$email'
+WHERE email='$email'
 "
 );
 
@@ -58,45 +58,39 @@ if(mysqli_num_rows($result)>0){
 
 
 
-    $otp = rand(100000,999999);
+$otp=rand(100000,999999);
+
+
 
 mysqli_query($conn,"
 UPDATE users
 SET
-    otp='$otp',
-    otp_expire = DATE_ADD(NOW(), INTERVAL 10 MINUTE)
-WHERE username='$username'
+otp='$otp',
+otp_expire = DATE_ADD(NOW(), INTERVAL 10 MINUTE)
+WHERE email='$email'
 ");
 
 
 
-    // Send OTP Email
-    if(sendOTP($email,$otp)){
-
-
-        $_SESSION['reset_user']=$username;
+if(sendOTP($email,$otp)){
 
 
 
-        echo "
-        <script>
-
-        alert('OTP has been sent to your email');
-
-        window.location='verify_otp.php';
-
-        </script>
-        ";
+$_SESSION['username_email']=$email;
 
 
 
-    }
-    else{
+echo "
 
+<script>
 
-        $error="Failed to send OTP. Try again.";
+alert('OTP has been sent to your email');
 
-    }
+window.location='verify_username_otp.php';
+
+</script>
+
+";
 
 
 
@@ -104,10 +98,21 @@ WHERE username='$username'
 else{
 
 
-    $error="Invalid Username or Email";
+$error="Failed to send OTP. Try again.";
+
+}
+
 
 
 }
+else{
+
+
+$error="Email not registered";
+
+
+}
+
 
 
 }
@@ -128,19 +133,24 @@ else{
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>Forgot Password</title>
+<title>Forgot Username | InventoryPro</title>
+
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 
 
 <link rel="stylesheet" href="assets/css/login.css">
 
 
+
 </head>
+
 
 
 
@@ -160,13 +170,17 @@ else{
 
 
 
+
 <div class="container">
+
 
 
 <div class="row vh-100 justify-content-center align-items-center">
 
 
+
 <div class="col-md-5">
+
 
 
 <div class="login-card">
@@ -175,7 +189,7 @@ else{
 
 <h2 class="mb-2">
 
-Forgot Password
+Forgot Username
 
 </h2>
 
@@ -183,23 +197,37 @@ Forgot Password
 
 <p class="text-muted mb-4">
 
-Reset your account password
+Recover your InventoryPro username
 
 </p>
+
+
 
 
 
 <?php if(isset($error)){ ?>
 
 
-<div class="alert alert-danger">
+<div class="alert alert-danger alert-dismissible fade show">
+
+
+<i class="bi bi-exclamation-triangle-fill me-2"></i>
+
 
 <?php echo $error; ?>
+
+
+<button class="btn-close" data-bs-dismiss="alert"></button>
+
 
 </div>
 
 
+
 <?php } ?>
+
+
+
 
 
 
@@ -207,47 +235,68 @@ Reset your account password
 
 
 
-<div class="mb-3">
-
-
-<label>Username</label>
-
-
-<input
-type="text"
-name="username"
-class="form-control"
-required>
-
-
-</div>
-
-
 
 
 <div class="mb-3">
 
 
-<label>Email</label>
+<label>
+
+Registered Email
+
+</label>
+
+
+
+<div class="input-group">
+
+
+
+<span class="input-group-text">
+
+<i class="bi bi-envelope-fill"></i>
+
+</span>
+
+
 
 
 <input
+
 type="email"
+
 name="email"
+
 class="form-control"
+
+placeholder="Enter registered email"
+
 required>
 
 
+
 </div>
+
+
+
+</div>
+
+
+
 
 
 
 
 <button
+
 type="submit"
+
 name="send_otp"
+
 class="btn btn-primary w-100">
 
+
+<i class="bi bi-send-fill me-2"></i>
 
 Send OTP
 
@@ -256,17 +305,21 @@ Send OTP
 
 
 
+
+
+
 <div class="text-center mt-3">
 
 
 <a href="login.php">
 
-Back to Login
+← Back to Login
 
 </a>
 
 
 </div>
+
 
 
 
@@ -277,10 +330,13 @@ Back to Login
 </div>
 
 
+
 </div>
 
 
+
 </div>
+
 
 
 </div>
@@ -288,5 +344,6 @@ Back to Login
 
 
 </body>
+
 
 </html>
