@@ -295,3 +295,88 @@ footer{
     font-weight:600;
 
 }
+
+/* Theme Transition */
+
+body,
+.navbar,
+.feature-box,
+.hero,
+section,
+footer{
+    transition: all .35s ease;
+}
+
+/* ---------- LIGHT MODE ---------- */
+
+body:not(.dark-mode){
+
+    background:#f8fafc;
+    color:#0f172a;
+
+}
+
+body:not(.dark-mode) .navbar{
+
+    background:#ffffff !important;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+body:not(.dark-mode) .navbar-brand{
+
+    color:#2563eb !important;
+
+}
+
+body:not(.dark-mode) .nav-link{
+
+    color:#0f172a !important;
+
+}
+
+body:not(.dark-mode) .hero{
+
+    background:linear-gradient(135deg,#dbeafe,#60a5fa);
+    color:#0f172a;
+
+}
+
+body:not(.dark-mode) .hero p{
+
+    color:#334155;
+
+}
+
+body:not(.dark-mode) .feature-box{
+
+    background:#ffffff;
+    color:#0f172a;
+
+}
+
+body:not(.dark-mode) .feature-box p{
+
+    color:#475569;
+
+}
+
+body:not(.dark-mode) #about{
+
+    background:#ffffff;
+
+}
+
+body:not(.dark-mode) .latest-products{
+
+    background:#f8fafc;
+
+}
+
+body:not(.dark-mode) footer{
+
+    background:#e2e8f0;
+    color:#0f172a;
+
+}
+
